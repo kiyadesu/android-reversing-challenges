@@ -62,7 +62,22 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 }
 ```
 
+## [misc.apk]((https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/misc.apk))
 
+### dex 结构（修复dex）
+
+快速简记：
+
+|结构|单位结构体占字节|共计字节|
+|---|---|---|
+|DexHeader|-|0x70h|
+|String Table|4|-|
+|Type Table|4|-|
+|Proto Table|12|-|
+|Field Table|8|-|
+|Method Table|8|-|
+|Class Def Table|32|-|
+|Data Section(含Map Section)|-|-|
 
 # reference
 
