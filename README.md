@@ -4,9 +4,9 @@
 
 [TOC]
 
-## [mobicrackNDK.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/mobicrackNDK.apk)
+# [mobicrackNDK.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/mobicrackNDK.apk)
 
-### JNI_Onload 中通过 RegisterNatives 动态注册 jni 函数
+## JNI_Onload 中通过 RegisterNatives 动态注册 jni 函数
 
 **相关函数**：
 
@@ -29,7 +29,7 @@ signed int __fastcall JNI_OnLoad(_JavaVM *a1)
     */
 ```
 
-### .init_array
+## .init_array
 
 根据 linker 源码, section 的执行顺序为 `.preinit_array` -> `.init` -> `.init_array` 。但 so 是不会执行 `.preinit_array` 的, 可以忽略。
 
@@ -62,9 +62,9 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 }
 ```
 
-## [misc.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/misc.apk)
+# [misc.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/misc.apk)
 
-### dex 结构（修复dex）
+## dex 结构（修复dex）
 
 快速简记：
 
@@ -79,9 +79,26 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 |Class Def Table|32|-|
 |Data Section(含Map Section)|-|-|
 
+# [simple.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/simple.apk)
+
+## hook 系统函数
+
+常规方法静态分析
+
+## dump 内存搜索 flag
+
+### 1. 利用 ddms 的 `dump HPROF file` 功能 (带箭头的油桶图标)
+
+搜索：`strings easyre.sjl.gossip.easyre.hprof | grep 0ctf`
+
+### 2. 利用 gore
+
+gdb 附加进程后直接执行 `gcore` dump，搜索：`strings core.7967 | grep 0ctf`
+
+
 # reference
 
 [CTF-Mobile](https://github.com/toToCW/CTF-Mobile)
-
+[write-ups-2015](https://github.com/ctfs/write-ups-2015)
 
 
