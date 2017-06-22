@@ -4,6 +4,31 @@
 
 [TOC]
 
+# 工具列表
+
+|name|How to get|
+|-|-|
+|jadx|https://github.com/skylot/jadx/releases|
+|jeb|https://down.52pojie.cn/Tools/Android_Tools/|
+|Ida|https://down.52pojie.cn/Tools/Disassemblers/|
+|010 Editor|https://down.52pojie.cn/Tools/Editors/|
+|010 templates|http://www.sweetscape.com/010editor/templates/|
+|aapt|in sdk build-tools|
+|Google signapk|https://github.com/kiya-z/Android/tree/master/tools/signapk|
+|Android Device Monitor|in sdk tools|
+|gdb|in ndk toolchains (ndk <= r10)|
+|gdbserver|in ndk prebuilt (ndk <= r10)|
+|Android Studio|https://developer.android.com/studio|
+|ShakaApktool|https://github.com/rover12421/ShakaApktool|
+|smalidea|https://bitbucket.org/JesusFreke/smali/downloads/|
+|smali|https://bitbucket.org/JesusFreke/smali/downloads/|
+|baksmali|https://bitbucket.org/JesusFreke/smali/downloads/|
+|axmlprinter|https://github.com/rednaga/axmlprinter/releases|
+|unluac|https://sourceforge.net/projects/unluac/|
+|sqlcipher|https://github.com/sqlcipher/sqlcipher|
+|android-backup-extractor|https://github.com/nelenkov/android-backup-extractor|
+
+
 # [mobicrackNDK.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/mobicrackNDK.apk)
 
 ## JNI_Onload 中通过 RegisterNatives 动态注册 jni 函数
