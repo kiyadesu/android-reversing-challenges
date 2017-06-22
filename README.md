@@ -1,6 +1,5 @@
 
-为代表性的 crackme 总结相关知识点。
-一緒に頑張りましょう！
+为代表性的 crackme 总结相关知识点。一緒に頑張りましょう！
 
 [TOC]
 
@@ -104,7 +103,7 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 |Class Def Table|32|-|
 |Data Section(含Map Section)|-|-|
 
-# [simple.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/simple.apk)
+# [EasyRe.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/EasyRe.apk)
 
 ## hook 系统函数
 
@@ -120,6 +119,11 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 
 gdb 附加进程后直接执行 `gcore` dump，搜索：`strings core.7967 | grep 0ctf`
 
+# [Timer.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/Timer.apk)
+
+## 修改 smali 代码
+
+指令参考这里👉[dalvik bytecode](https://source.android.com/devices/tech/dalvik/dalvik-bytecode)
 
 # reference
 
