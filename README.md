@@ -125,6 +125,30 @@ gdb 附加进程后直接执行 `gcore` dump，搜索：`strings core.7967 | gre
 
 指令参考这里👉[dalvik bytecode](https://source.android.com/devices/tech/dalvik/dalvik-bytecode)
 
+
+# [LoopAndLoop.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/LoopAndLoop.apk)
+
+## ARM 的参数传递规则
+
+R0、R1、R2、R3， 在调用函数时，用来存放前4个函数参数；如果函数的参数多于 4 个，则多余参数存放在堆栈当中；
+低于32位的函数返回值存于 R0。
+
+## ARM 的寄存器规则
+
+|寄存器|作用|
+|-|-|
+|R0 ~ R3|调用函数时，用来存放前4个函数参数|
+|R0|函数返回时，存放低于32位的函数返回值|
+|R4 ~ R11|保存局部变量。进入函数时必须保存所用到的局部变量寄存器的值，在返回前必须恢复这些寄存器的值；对于函数中没有用到的寄存器则不必进行这些操作。<br>在Thumb中，通常只能使用寄存器 R4~R7来保存局部变量，<br>所以函数内部通用的入栈出栈代码可以为：<br>STMFD sp!,\{r4-r11,lr\}<br>// body of ASM code<br>LDMFD sp!,\{r4-r11,pc\}|
+|R12|用作 IP，内部调用暂时寄存器|
+|R13|用作 SP，栈指针，sp 中存放的值在退出被调用函数时必须与进入时的值相同。|
+|R14|用作 LR，链接寄存器，保存函数的返回地址；如果在函数中保存了返回地址，寄存器R14 则可以用作其他用途|
+|R15|用作 PC，程序计数器|
+|R16|CPSR，状态寄存器|
+
+
+
+
 # reference
 
 [CTF-Mobile](https://github.com/toToCW/CTF-Mobile)
