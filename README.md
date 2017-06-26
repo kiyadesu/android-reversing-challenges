@@ -10,6 +10,7 @@
 |jadx|https://github.com/skylot/jadx/releases|
 |jeb|https://down.52pojie.cn/Tools/Android_Tools/|
 |Ida|https://down.52pojie.cn/Tools/Disassemblers/|
+|ARM ⇌ Hex|http://armconverter.com/|
 |010 Editor|https://down.52pojie.cn/Tools/Editors/|
 |010 templates|http://www.sweetscape.com/010editor/templates/|
 |aapt|in sdk build-tools|
@@ -103,6 +104,8 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 |Class Def Table|32|-|
 |Data Section(含Map Section)|-|-|
 
+原理参考：[Apk协作攻击漏洞“炸弹引爆”详解](http://jaq.alibaba.com/blog.htm?id=76)
+
 # [EasyRe.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/EasyRe.apk)
 
 ## hook 系统函数
@@ -125,7 +128,6 @@ gdb 附加进程后直接执行 `gcore` dump，搜索：`strings core.7967 | gre
 
 指令参考这里👉[dalvik bytecode](https://source.android.com/devices/tech/dalvik/dalvik-bytecode)
 
-
 # [LoopAndLoop.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/LoopAndLoop.apk)
 
 ## ARM 的参数传递规则
@@ -145,8 +147,6 @@ R0、R1、R2、R3， 在调用函数时，用来存放前4个函数参数；如�
 |R14|用作 LR，链接寄存器，保存函数的返回地址；如果在函数中保存了返回地址，寄存器R14 则可以用作其他用途|
 |R15|用作 PC，程序计数器|
 |R16|CPSR，状态寄存器|
-
-
 
 
 # reference
