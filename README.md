@@ -18,6 +18,8 @@
 |Charles|https://down.52pojie.cn/Tools/Network_Analyzer/|
 |aapt|in sdk build-tools|
 |Google signapk|https://github.com/kiya-z/Android/tree/master/tools/signapk|
+|xposed|http://repo.xposed.info/module/de.robv.android.xposed.installer|
+|frida|https://www.frida.re/|
 |Android Device Monitor|in sdk tools|
 |gdb|in ndk toolchains (ndk <= r10)|
 |gdbserver|in ndk prebuilt (ndk <= r10)|
