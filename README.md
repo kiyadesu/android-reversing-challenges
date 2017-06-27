@@ -8,11 +8,14 @@
 |name|How to get|
 |-|-|
 |jadx|https://github.com/skylot/jadx/releases|
+|Hopper|https://down.52pojie.cn/Tools/Disassemblers/|
 |jeb|https://down.52pojie.cn/Tools/Android_Tools/|
 |Ida|https://down.52pojie.cn/Tools/Disassemblers/|
+|JD-GUI|https://github.com/java-decompiler/jd-gui/releases|
 |ARM ⇌ Hex|http://armconverter.com/|
 |010 Editor|https://down.52pojie.cn/Tools/Editors/|
 |010 templates|http://www.sweetscape.com/010editor/templates/|
+|Charles|https://down.52pojie.cn/Tools/Network_Analyzer/|
 |aapt|in sdk build-tools|
 |Google signapk|https://github.com/kiya-z/Android/tree/master/tools/signapk|
 |Android Device Monitor|in sdk tools|
@@ -24,6 +27,7 @@
 |smali|https://bitbucket.org/JesusFreke/smali/downloads/|
 |baksmali|https://bitbucket.org/JesusFreke/smali/downloads/|
 |axmlprinter|https://github.com/rednaga/axmlprinter/releases|
+|javassist|https://github.com/jboss-javassist/javassist/releases|
 |unluac|https://sourceforge.net/projects/unluac/|
 |sqlcipher|https://github.com/sqlcipher/sqlcipher|
 |android-backup-extractor|https://github.com/nelenkov/android-backup-extractor|
@@ -104,8 +108,6 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 |Class Def Table|32|-|
 |Data Section(含Map Section)|-|-|
 
-原理参考：[Apk协作攻击漏洞“炸弹引爆”详解](http://jaq.alibaba.com/blog.htm?id=76)
-
 # [EasyRe.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/EasyRe.apk)
 
 ## hook 系统函数
@@ -155,4 +157,5 @@ R0、R1、R2、R3， 在调用函数时，用来存放前4个函数参数；如�
 
 [write-ups-2015](https://github.com/ctfs/write-ups-2015)
 
+[write-ups-2016](https://github.com/ctfs/write-ups-2016)
 
