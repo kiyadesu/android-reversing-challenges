@@ -11,6 +11,7 @@
 |Hopper|https://down.52pojie.cn/Tools/Disassemblers/|
 |jeb|https://down.52pojie.cn/Tools/Android_Tools/|
 |Ida|https://down.52pojie.cn/Tools/Disassemblers/|
+|radare2|https://github.com/radare/radare2|
 |JD-GUI|https://github.com/java-decompiler/jd-gui/releases|
 |ARM ⇌ Hex|http://armconverter.com/|
 |010 Editor|https://down.52pojie.cn/Tools/Editors/|
@@ -152,6 +153,51 @@ R0、R1、R2、R3， 在调用函数时，用来存放前4个函数参数；如�
 |R15|用作 PC，程序计数器|
 |R16|CPSR，状态寄存器|
 
+
+# [KXCTF.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/KXCTF.apk)
+
+## dex 校验
+
+SHA1 值。
+
+## 反调试
+
+1. 读取 /proc/pid/status 的 State 是否为 t
+2. 读取 /proc/pid/status 的 TracerPid 是否不为0
+3. 读取 /proc/pid/wchan 是否有 ptrace_stop
+
+## DES 加密
+
+对称性加密，典型的 DES 以`64 位二进制为分组`对数据加密。
+如果明文不是 64 位（16个16进制位）的整数倍，则加密前，这段文本必须`在尾部补充一些额外的字节`。
+在运算时需要根据`特定的表格`以 64 位为单位对明文和秘钥分别进行`置换操作`。
+
+## RC6 加密
+
+```
+// Encryption/Decryption with RC6-w/r/b
+//
+// Input:   Plaintext stored in four w-bit input registers A, B, C & D
+//  r is the number of rounds
+//  w-bit round keys S[0, ... , 2r + 3]
+//
+// Output: Ciphertext stored in A, B, C, D
+//
+// '''Encryption Procedure:'''
+
+  B = B + S[0]
+  D = D + S[1]
+  for i = 1 to r do
+  {
+    t = (B*(2B + 1)) <<< lg w
+    u = (D*(2D + 1)) <<< lg w
+    A = ((A ⊕ t) <<< u) + S[2i]
+    C = ((C ⊕ u) <<< t) + S[2i + 1]
+                (A, B, C, D)  =  (B, C, D, A)
+  }
+  A = A + S[2r + 2]
+  C = C + S[2r + 3]
+```
 
 # reference
 
