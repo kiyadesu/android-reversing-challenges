@@ -38,6 +38,8 @@
 
 # [mobicrackNDK.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/mobicrackNDK.apk)
 
+>来自福建海峡两岸CTF 2015。
+
 ## JNI_Onload 中通过 RegisterNatives 动态注册 jni 函数
 
 **相关函数**：
@@ -96,6 +98,8 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 
 # [misc.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/misc.apk)
 
+>来自 RCTF 2015。
+
 ## dex 结构（修复dex）
 
 快速简记：
@@ -113,6 +117,8 @@ void soinfo::CallFunction(const char* function_name UNUSED, linker_function_t fu
 
 # [EasyRe.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/EasyRe.apk)
 
+>来自 0CTF 2015。
+
 ## hook 系统函数
 
 常规方法静态分析
@@ -129,11 +135,15 @@ gdb 附加进程后直接执行 `gcore` dump，搜索：`strings core.7967 | gre
 
 # [Timer.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/Timer.apk)
 
+>来自 AliCTF 2016。
+
 ## 修改 smali 代码
 
 指令参考这里👉[dalvik bytecode](https://source.android.com/devices/tech/dalvik/dalvik-bytecode)
 
 # [LoopAndLoop.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/LoopAndLoop.apk)
+
+>来自 AliCTF 2016。
 
 ## ARM 的参数传递规则
 
@@ -156,6 +166,8 @@ R0、R1、R2、R3， 在调用函数时，用来存放前4个函数参数；如�
 
 # [KXCTF.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/KXCTF.apk)
 
+>来自 看雪CTF 2017。
+
 ## dex 校验
 
 SHA1 值。
@@ -173,6 +185,8 @@ SHA1 值。
 在运算时需要根据`特定的表格`以 64 位为单位对明文和秘钥分别进行`置换操作`。
 
 ## RC6 加密
+
+对称性加密。主要操作是`异或和循环左移`。
 
 ```
 // Encryption/Decryption with RC6-w/r/b
@@ -199,6 +213,61 @@ SHA1 值。
   C = C + S[2r + 3]
 ```
 
+# [rfchen.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/rfchen.apk)
+
+>来自 看雪CTF 2017。
+
+## 乱序指令
+
+```
+B               loc_XXXX
+```
+
+## 花指令
+
+```
+PUSH            {R0,R4,R5,R7,LR}
+POP.W           {R0,R4,R5,R7,LR}
+```
+
+```
+PUSH.W          {R4-R10,LR}
+...
+POP.W           {R4-R10,LR}
+```
+
+## 去花
+
+即将规律的花指令 nop 掉并修复跳转，脚本编写可参考 IDA 的 idc 或 idapython API。
+
+## RC4 加密
+
+对称性加密。由`伪随机数生成器和异或运算`组成。密钥长度范围是[1,255]。
+RC4一个字节一个字节地加解密。给定一个密钥，伪随机数生成器接受密钥并产生一个S盒。S盒用来加密数据，而且在加密过程中S盒会变化。
+
+*伪代码：*
+
+```
+ for i from 0 to 255
+     S[i] := i
+ endfor
+ j := 0
+ for( i=0 ; i<256 ; i++)
+     j := (j + S[i] + key[i mod keylength]) % 256
+     swap values of S[i] and S[j]
+ endfor
+
+ i := 0
+ j := 0
+ while GeneratingOutput:
+     i := (i + 1) mod 256   //a
+     j := (j + S[i]) mod 256 //b
+     swap values of S[i] and S[j]  //c
+     k := inputByte ^ S[(S[i] + S[j]) % 256]
+     output K
+ endwhile
+```
+
 # reference
 
 [CTF-Mobile](https://github.com/toToCW/CTF-Mobile)
@@ -206,4 +275,6 @@ SHA1 值。
 [write-ups-2015](https://github.com/ctfs/write-ups-2015)
 
 [write-ups-2016](https://github.com/ctfs/write-ups-2016)
+
+[看雪论坛](http://bbs.pediy.com/)
 
