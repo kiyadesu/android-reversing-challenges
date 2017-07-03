@@ -217,28 +217,43 @@ SHA1 值。
 
 >来自 看雪CTF 2017。
 
-## 乱序指令
+
+## 花指令
+
+本例中的花指令有以下几种：
 
 ```
 B               loc_XXXX
 ```
 
-## 花指令
-
 ```
 PUSH            {R0,R4,R5,R7,LR}
+SUB             SP, SP, #8
+MOV             R2, R2
+ADD             SP, SP, #8
+ADD.W           R0, R0, #1
+SUB.W           R0, R0, #1
+MOV             R3, R3
 POP.W           {R0,R4,R5,R7,LR}
+ADD.W           R1, R1, #1
+SUB.W           R1, R1, #1
 ```
 
 ```
 PUSH.W          {R4-R10,LR}
-...
 POP.W           {R4-R10,LR}
 ```
 
-## 去花
+去花即将规律的花指令 nop 掉并修复跳转，ida 中的去花脚本编写可参考 IDA 的 idc 或 idapython API。
 
-即将规律的花指令 nop 掉并修复跳转，脚本编写可参考 IDA 的 idc 或 idapython API。
+为了使 IDA 识别某个函数X，需要在 Functions Window **统统删除**之前函数X中误将 junk code 识别为函数的垃圾函数，手动**设置函数X的结尾**（Edit - Functions - set function end）。
+
+**函数尾部特征：**
+
+1. `BLX   __stack_chk_fail`  -> 堆栈保护
+2. `POP   {R4-R7,PC} (与函数头 PUSH {R4-R7,LR} 对应)`  -> 堆栈平衡
+
+本例去花可参考：[1（ HideArea 方便分析）](http://bbs.pediy.com/thread-217889.htm)、[2（ NOP并修改跳转 ）](http://bbs.pediy.com/thread-218432.htm)
 
 ## RC4 加密
 
