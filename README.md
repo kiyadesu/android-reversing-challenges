@@ -5,37 +5,41 @@
 
 # 工具列表
 
-|name|How to get|
-|-|-|
-|jadx|https://github.com/skylot/jadx/releases|
-|Hopper|https://down.52pojie.cn/Tools/Disassemblers/|
-|jeb|https://down.52pojie.cn/Tools/Android_Tools/|
-|Ida|https://down.52pojie.cn/Tools/Disassemblers/|
-|radare2|https://github.com/radare/radare2|
-|JD-GUI|https://github.com/java-decompiler/jd-gui/releases|
-|ARM ⇌ Hex|http://armconverter.com/|
-|keystone|http://www.keystone-engine.org/|
-|010 Editor|https://down.52pojie.cn/Tools/Editors/|
-|010 templates|http://www.sweetscape.com/010editor/templates/|
-|Charles|https://down.52pojie.cn/Tools/Network_Analyzer/|
-|aapt|in sdk build-tools|
-|Google signapk|https://github.com/kiya-z/Android/tree/master/tools/signapk|
-|xposed|http://repo.xposed.info/module/de.robv.android.xposed.installer|
-|frida|https://www.frida.re/|
-|Android Device Monitor|in sdk tools|
-|gdb|in ndk toolchains (ndk <= r10)|
-|gdbserver|in ndk prebuilt (ndk <= r10)|
-|Android Studio|https://developer.android.com/studio|
-|ShakaApktool|https://github.com/rover12421/ShakaApktool|
-|smalidea|https://bitbucket.org/JesusFreke/smali/downloads/|
-|smali|https://bitbucket.org/JesusFreke/smali/downloads/|
-|baksmali|https://bitbucket.org/JesusFreke/smali/downloads/|
-|axmlprinter|https://github.com/rednaga/axmlprinter/releases|
-|javassist|https://github.com/jboss-javassist/javassist/releases|
-|unluac|https://sourceforge.net/projects/unluac/|
-|sqlcipher|https://github.com/sqlcipher/sqlcipher|
-|android-backup-extractor|https://github.com/nelenkov/android-backup-extractor|
-
+|function|name|How to get|
+|-|-|-|
+|apk 分析|jadx|https://github.com/skylot/jadx/releases|
+|逆向工具|Hopper|https://down.52pojie.cn/Tools/Disassemblers/|
+|逆向工具|jeb|https://down.52pojie.cn/Tools/Android_Tools/|
+|逆向工具|Ida|https://down.52pojie.cn/Tools/Disassemblers/|
+|逆向工具|radare2|https://github.com/radare/radare2|
+|jar 包查看|JD-GUI|https://github.com/java-decompiler/jd-gui/releases|
+|汇编字节码|ARM ⇌ Hex|http://armconverter.com/|
+|汇编框架|keystone|http://www.keystone-engine.org/|
+|二进制查看|010 Editor|https://down.52pojie.cn/Tools/Editors/|
+|文件格式模板|010 templates|http://www.sweetscape.com/010editor/templates/|
+|抓包|Charles|https://down.52pojie.cn/Tools/Network_Analyzer/|
+|操作 apk|aapt|in sdk build-tools|
+|apk 签名|Google signapk|https://github.com/kiya-z/Android/tree/master/tools/signapk|
+|hook 框架|xposed|http://repo.xposed.info/module/de.robv.android.xposed.installer|
+|hook 框架|frida|https://www.frida.re/|
+|DDMS|Android Device Monitor|in sdk tools|
+|gdb 调试|gdb|in ndk toolchains (ndk <= r10)|
+|gdb 调试|gdbserver|in ndk prebuilt (ndk <= r10)|
+|开发工具|Android Studio|https://developer.android.com/studio|
+|反编译 apk|ShakaApktool|https://github.com/rover12421/ShakaApktool|
+|调试 smali|smalidea|https://bitbucket.org/JesusFreke/smali/downloads/|
+|smali -> dex|smali|https://bitbucket.org/JesusFreke/smali/downloads/|
+|dex -> smali|baksmali|https://bitbucket.org/JesusFreke/smali/downloads/|
+|解析 android manifest|axmlprinter|https://github.com/rednaga/axmlprinter/releases|
+|帮助修改 java 字节码|javassist|https://github.com/jboss-javassist/javassist/releases|
+|luac 反编译|unluac|https://sourceforge.net/projects/unluac/|
+|sql 加解密|sqlcipher|https://github.com/sqlcipher/sqlcipher|
+|ab 文件解压|android-backup-extractor|https://github.com/nelenkov/android-backup-extractor|
+|llvm 混淆|o-llvm|https://github.com/obfuscator-llvm/obfuscator/|
+|逆向框架|Miasm|https://github.com/cea-sec/miasm|
+|符号执行|angr|https://github.com/angr/angr|
+|符号执行|trigon|https://github.com/JonathanSalwan/Triton|
+|二进制分析|barf|https://github.com/programa-stic/barf-project|
 
 # [mobicrackNDK.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/mobicrackNDK.apk)
 
@@ -301,6 +305,30 @@ RC4一个字节一个字节地加解密。给定一个密钥，伪随机数生�
 读取 self maps 文件找到 odex 的内存地址 -> 解析dex -> 遍历 classDefs 找到两个函数地址 -> mprotect 修改内存属性 -> 函数替换 -> 将内存属性改回。
 
 >论文参考：**《基于 SMC 的 Android 软件保护研究与实现》**
+
+# [AN.apk](https://github.com/kiya-z/android-reversing-challenges/tree/master/apks/AN.apk)
+
+>来自 NJCTF 2017.
+
+## NativeActivity
+
+NativeActivity 是 android SDK 自带的一个 activity，本例将其作为主 activity，使得 dex 中没有 Java 代码。
+
+NativeActivity 所在的 so 在 manifest 中有注册，固定格式：
+
+```
+<meta-data android:name="android.app.lib_name" android:value="SONAME" />
+```
+
+入口函数是 `android_main()`。可以这样找到它：
+
+1. 函数 `ANativeActivity_onCreate`
+2. `j_j_pthread_create((pthread_t *)v4 + 20, &attr, (void *(*)(void *))sub_XXX, v4);`
+3. 进入 sub_XXX ，即可看到 `android_main(v1);`
+
+关于 NativeActivity 原理，参考[这里](http://blog.csdn.net/ldpxxx/article/details/9253369)。
+
+## ollvm
 
 # reference
 
