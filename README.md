@@ -12,6 +12,7 @@
 |逆向工具|jeb|https://down.52pojie.cn/Tools/Android_Tools/|
 |逆向工具|Ida|https://down.52pojie.cn/Tools/Disassemblers/|
 |逆向工具|radare2|https://github.com/radare/radare2|
+|so 修复|ThomasKing rebuild_section|https://bbs.pediy.com/thread-192874.htm|
 |jar 包查看|JD-GUI|https://github.com/java-decompiler/jd-gui/releases|
 |汇编字节码|ARM ⇌ Hex|http://armconverter.com/|
 |汇编框架|keystone|http://www.keystone-engine.org/|
