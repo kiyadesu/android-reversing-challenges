@@ -31,6 +31,7 @@
 |smali -> dex|smali|https://bitbucket.org/JesusFreke/smali/downloads/|
 |dex -> smali|baksmali|https://bitbucket.org/JesusFreke/smali/downloads/|
 |解析 android manifest|axmlprinter|https://github.com/rednaga/axmlprinter/releases|
+|查看 .class 文件, 可配合 010 的 class template 手动修改 class bytecode|jclasslib|https://github.com/ingokegel/jclasslib|
 |帮助修改 java 字节码|javassist|https://github.com/jboss-javassist/javassist/releases|
 |luac 反编译|unluac|https://sourceforge.net/projects/unluac/|
 |sql 加解密|sqlcipher|https://github.com/sqlcipher/sqlcipher|
