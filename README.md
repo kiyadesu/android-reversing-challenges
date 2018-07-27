@@ -8,6 +8,7 @@
 |function|name|How to get|
 |-|-|-|
 |apk 分析|jadx|https://github.com/skylot/jadx/releases|
+|Java方法调用追踪(与 DDMS method profiling 配合使用)|TraceReader|https://github.com/panhongwei/TraceReader|
 |逆向工具|Hopper|https://down.52pojie.cn/Tools/Disassemblers/|
 |逆向工具|jeb|https://down.52pojie.cn/Tools/Android_Tools/|
 |逆向工具|Ida|https://down.52pojie.cn/Tools/Disassemblers/|
