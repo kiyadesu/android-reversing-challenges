@@ -26,6 +26,7 @@
 |apk 签名|Google signapk|https://github.com/kiya-z/Android/tree/master/tools/signapk|
 |hook 框架|xposed|http://repo.xposed.info/module/de.robv.android.xposed.installer|
 |hook 框架|frida|https://www.frida.re/|
+|frida on burp suite|Brida|https://github.com/federicodotta/Brida|
 |DDMS|Android Device Monitor|in sdk tools|
 |gdb 调试|gdb|in ndk toolchains (ndk <= r10)|
 |gdb 调试|gdbserver|in ndk prebuilt (ndk <= r10)|
