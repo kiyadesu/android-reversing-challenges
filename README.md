@@ -22,6 +22,7 @@
 |文件格式模板|010 templates|http://www.sweetscape.com/010editor/templates/|
 |抓包|Charles|https://down.52pojie.cn/Tools/Network_Analyzer/|
 |抓包|Burp Suite|https://down.52pojie.cn/Tools/Network_Analyzer/|
+|证书校验|JustTrustMe|https://github.com/Fuzion24/JustTrustMe/releases|
 |操作 apk|aapt|in sdk build-tools|
 |apk 签名|Google signapk|https://github.com/kiya-z/Android/tree/master/tools/signapk|
 |hook 框架|xposed|http://repo.xposed.info/module/de.robv.android.xposed.installer|
